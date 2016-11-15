@@ -9,5 +9,5 @@
  * @author euclid
  */
 public class shaisjava {
-    
+        
 }
