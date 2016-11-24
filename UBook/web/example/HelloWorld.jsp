@@ -1,10 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
+<link rel="stylesheet" href="<c:url value='/css/bootstrap.css'/>"/>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 <html>
     <head>
-        <title><s:text name="HelloWorld.message"/></title>
+        <title>
+            <s:text name="HelloWorld.message"/>
+        </title>
     </head>
 
     <body>
