@@ -5,10 +5,16 @@
  */
 package database;
 
+import com.opensymphony.xwork2.ActionSupport;
+
 /**
  *
  * @author reitersg
  */
-public class Search {
+public class Search extends ActionSupport{
     
+    @Override
+    public String execute(){
+        return "";
+    }
 }
