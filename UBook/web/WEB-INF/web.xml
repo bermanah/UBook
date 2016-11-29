@@ -4,6 +4,26 @@
         <filter-name>struts2</filter-name>
         <filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
     </filter>
+     <env-entry>
+        <env-entry-name>DriverClassName</env-entry-name>
+        <env-entry-value>com.mysql.jdbc.Driver</env-entry-value>
+        <env-entry-type>java.lang.String</env-entry-type>
+    </env-entry>
+    <env-entry>
+        <env-entry-name>Url</env-entry-name>
+        <env-entry-value>jdbc:mysql://localhost:3306/team16_db</env-entry-value>
+        <env-entry-type>java.lang.String</env-entry-type>
+    </env-entry>
+    <env-entry>
+        <env-entry-name>UserId</env-entry-name>
+        <env-entry-value>team16</env-entry-value>
+        <env-entry-type>java.lang.String</env-entry-type>
+    </env-entry>
+    <env-entry>
+        <env-entry-name>Password</env-entry-name>
+        <env-entry-value>ind!a3</env-entry-value>
+        <env-entry-type>java.lang.String</env-entry-type>
+    </env-entry>
     <filter-mapping>
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>

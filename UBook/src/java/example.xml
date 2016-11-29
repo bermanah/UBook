@@ -9,6 +9,7 @@
         <action name="HelloWorld" class="example.HelloWorld">
             <result>/example/HelloWorld.jsp</result>
         </action>
+        
     </package>
 </struts>
 
