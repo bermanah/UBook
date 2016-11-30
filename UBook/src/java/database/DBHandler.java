@@ -17,7 +17,7 @@ import javax.naming.*;
 public class DBHandler {
   
     /** Database access credentials */
-    protected String driverName = null, url = null, userId = null, password = null;
+    protected String driverName = "com.mysql.jdbc.Driver", url = "jdbc:mysql://localhost:3306/team16_db", userId = "team16", password = "ind!a3";
     /** Database connection */
     private Connection con;
     /** SQL Statement */
@@ -30,15 +30,7 @@ public class DBHandler {
      */
     public DBHandler() {
         // Get DB access credentials from web.xml
-        try {
-            Context envCtx = (Context) (new InitialContext()).lookup("java:comp/env");
-            driverName = (String) envCtx.lookup("DriverClassName");
-            url = (String) envCtx.lookup("Url");
-            userId = (String) envCtx.lookup("UserId");
-            password = (String) envCtx.lookup("Password");
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
+        
     }
 
     /**

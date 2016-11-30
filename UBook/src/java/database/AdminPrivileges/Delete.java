@@ -10,5 +10,5 @@ package database.AdminPrivileges;
  * @author reitersg
  */
 public class Delete {
-    
+        
 }
