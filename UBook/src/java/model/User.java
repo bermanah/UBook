@@ -12,6 +12,7 @@ package model;
  */
 public class User {
     private String username;
+    private String password;
     private boolean admin;
     private String email;
     private String university;
@@ -23,8 +24,9 @@ public class User {
      * @param email The user's email
      * @param university The user's university
      */
-    public User(String username, boolean admin, String email, String university) {
+    public User(String username, String password, boolean admin, String email, String university) {
         this.username = username;
+        this.password = password;
         this.admin = admin;
         this.email = email;
         this.university = university;
@@ -34,16 +36,26 @@ public class User {
      * Get the user's username.
      * @return The user's username
      */
-    public String getUsername() {
+    public String getUserName() {
         return username;
     }
 
     /**
+     * Get the user's password.
+     * @return The user's password
+     */
+    public String getPassword() {
+        return password;
+    }
+    
+    /**
      * Get the user's admin privileges.
      * @return If the user is an admin or not
      */
-    public boolean isAdmin() {
-        return admin;
+    public String getUserType() {
+        if (this.admin == true)
+            return "admin";
+        return "user";
     }
 
     /**

@@ -11,7 +11,7 @@ package model;
  * @version 1.0
  */
 public class Book {
-    private String seller;
+    private String userName;
     private int bookID;
     private int isbn;
     private double price;
@@ -32,7 +32,7 @@ public class Book {
      */
     public Book(String seller, int id, int isbn, double price, boolean negotiable,
             String condition, String description) {
-        this.seller = seller;
+        this.userName = seller;
         this.bookID = id;
         this.isbn = isbn;
         this.price = price;
@@ -45,8 +45,8 @@ public class Book {
      * Get the book's seller.
      * @return The book's seller
      */    
-    public String getSeller() {
-        return seller;
+    public String getUserName() {
+        return userName;
     }
 
     /**
@@ -61,7 +61,7 @@ public class Book {
      * Get the book's ISBN.
      * @return the book's ISBN
      */
-    public int getIsbn() {
+    public int getISBN() {
         return isbn;
     }
 
@@ -93,7 +93,7 @@ public class Book {
      * Get the book;s description.
      * @return the description of the book
      */
-    public String getDescription() {
+    public String getBookDescription() {
         return description;
     }
 }
