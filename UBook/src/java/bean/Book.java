@@ -19,6 +19,16 @@ public class Book {
     private int bookID = rnd.nextInt(10000000);
     private int ISBN;
 
+    public Book(String userName, int bookID, int ISBN2, String condition, String bookDescription, long price, int negotiable) {
+        this.setUserName(userName);
+        this.setNegotiable(negotiable);
+        this.setISBN(ISBN2);
+        this.setPrice(price);
+        this.setCondition(condition);
+        this.setBookID(bookID);
+        this.setBookDescription(bookDescription);
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -30,7 +40,7 @@ public class Book {
     public int getBookID() {
         return bookID;
     }
-
+    
     public void setBookID(int bookID) {
         this.bookID = bookID;
     }
@@ -71,12 +81,8 @@ public class Book {
         return this.negotiable;
     }
 
-    public void setNegotiable(boolean negotiable) {
-        if (negotiable) {
-            this.negotiable = 1;
-        } else {
-            this.negotiable = 0;
-        }
+    public void setNegotiable(int negotiable) {
+           this.negotiable = negotiable;
     }
     private String condition;
     private String bookDescription;

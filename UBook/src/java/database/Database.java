@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.naming.*;
  /**
@@ -70,5 +71,33 @@ public class Database {
         }
             
     }
+    public static ArrayList<Book> searchBooks(String ISBN){
+            ArrayList<Book> result = new ArrayList<Book>();
+            DBHandler handler = new DBHandler();
+            StringBuilder query = new StringBuilder();
+            query.append("SELECT * from book WHERE ISBN = " + ISBN);
+            try {
+                ResultSet set = handler.doQuery(query.toString());
+                while (set.next()){
+                      int i = 1; // 1st column
+                String userName = set.getString(i++);
+                int bookID = set.getInt(i++);
+                int ISBN2 = set.getInt(i++);
+                String condition = set.getString(i++);
+                String bookDescription = set.getString(i++);
+                long price = set.getLong(i++);
+                int negotiable = set.getInt(i++);
+                Book book = new Book(userName, bookID, ISBN2, condition, bookDescription, price, negotiable);
+                result.add(book);
+            }
+                handler.close();
+                }
+             catch (SQLException e){
+               e.printStackTrace();
+             }
+            return result;
+}          
+    
+    }
   
-}
+
