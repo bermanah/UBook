@@ -27,5 +27,19 @@ public class AdminFunctions {
             e.printStackTrace();
             return false;
         }
+        
     }
+        public static boolean deleteUser(User user){
+            DBHandler handler = new DBHandler();
+            StringBuilder command = new StringBuilder();
+            command.append("DELETE FROM user WHERE Username = " + user.getUserName());
+            try {
+                int resultCount = handler.doCommand(command.toString());
+                handler.close();
+                return (resultCount > 0);
+            } catch (SQLException e) {
+                e.printStackTrace();
+               return false;
+            }
+        }
 }
