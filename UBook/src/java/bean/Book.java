@@ -35,8 +35,6 @@ public class Book {
         this.setNegotiable(negotiable);
         this.setISBN(ISBN);
         this.setPrice(price);
-        
-        
         this.setCondition(condition);
         this.setBookID(bookID);
         this.setBookDescription(bookDescription);        
