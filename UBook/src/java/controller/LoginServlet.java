@@ -5,6 +5,9 @@
  */
 package controller;
 
+import bean.*;
+import database.*;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -16,7 +19,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Thomas Erlendson
+ * @author erlendtp
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
@@ -32,17 +35,30 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userid = request.getParameter("userid");
-        String password = request.getParameter("password");
+        HttpSession session = request.getSession(true);
         
-        if (userid.equals("abc") && password.equals("123")) {
-            HttpSession session = request.getSession(true);
+        String userid = request.getParameter("Username");
+        String password = request.getParameter("Password");
+        
+        User user = new User();
+        user.setUserName(userid);
+        user.setPassword(password);
+        
+        if (Database.checkLogin(user) == 1)
+        {           
+            if (userid.equals("admin") && password.equals("ind!a3"))
+            {
+                session.setAttribute("usertype", "admin");
+            }
             session.setAttribute("loggedIn", true);
             session.setAttribute("userid", userid);
-            response.sendRedirect("/home.html");
+            response.sendRedirect("http://localhost:8084/UBook/index.jsp");
         }
-        else {
-            response.sendRedirect("/login.html");
+        else
+        {
+            session.setAttribute("loginMessage", "Bad Login Credentials");
+            response.sendRedirect("http://localhost:8084/UBook/login.html");
         }
+        
     }
 }
