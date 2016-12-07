@@ -40,6 +40,10 @@ public class Book {
         this.setBookDescription(bookDescription);        
     }
 
+    public Book() {
+
+    }
+
     public String getUserName() {
         return userName;
     }

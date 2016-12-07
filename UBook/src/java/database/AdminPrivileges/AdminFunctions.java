@@ -15,20 +15,7 @@ import java.sql.SQLException;
  */
 public class AdminFunctions {
     
-        public static boolean deleteBook(Book book){
-        DBHandler handler = new DBHandler();
-        StringBuilder command = new StringBuilder();
-        command.append("DELETE FROM book WHERE Username = " + book.getUserName() + "AND ISBN = " + book.getISBN());
-         try {
-           int resultCount = handler.doCommand(command.toString());
-            handler.close();
-            return (resultCount > 0);
-        } catch(SQLException e){
-            e.printStackTrace();
-            return false;
-        }
-        
-    }
+ 
         public static boolean deleteUser(User user){
             DBHandler handler = new DBHandler();
             StringBuilder command = new StringBuilder();
