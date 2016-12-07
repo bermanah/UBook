@@ -40,7 +40,7 @@
                 out.print("<nav class=\"navbar navbar-custom\">");
                 out.print("<div class=\"container-fluid\">");
                 out.print("<div class=\"navbar-header\">");
-                out.print("<a class=\"navbar-brand\" href=\"#\">UBook</a>");
+                out.print("<a class=\"navbar-brand\" href=\"index.jsp\">UBook</a>");
                 out.print("</div>");
                 out.print("<ul class=\"nav navbar-nav navbar-right\">");
                 out.print("<li><a href=\"register.html\"><span class=\"glyphicon glyphicon-user\"></span> Sign Up</a></li>");
@@ -54,7 +54,7 @@
                 out.print("<nav class=\"navbar navbar-custom\">");
                 out.print("<div class=\"container-fluid\">");
                 out.print("<div class=\"navbar-header\">");
-                out.print("<a class=\"navbar-brand\" href=\"#\">UBook</a>");
+                out.print("<a class=\"navbar-brand\" href=\"index.jsp\">UBook</a>");
                 out.print("</div>");
                 out.print("<ul class=\"nav navbar-nav navbar-right\">");
                 out.print("<li><a href=\"profile.html\"><span class=\"glyphicon glyphicon-user\"></span> Profile</a></li>");
