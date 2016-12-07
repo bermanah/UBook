@@ -17,9 +17,9 @@ public class Book {
     Random rnd = new Random();
     private String userName;
     private int bookID = rnd.nextInt(10000000);
-    private int ISBN;
+    private float ISBN;
 
-    public Book(String userName, int bookID, int ISBN2, String condition, String bookDescription, long price, int negotiable) {
+    public Book(String userName, int bookID, float ISBN2, String condition, String bookDescription, long price, int negotiable) {
         this.setUserName(userName);
         this.setNegotiable(negotiable);
         this.setISBN(ISBN2);
@@ -27,6 +27,17 @@ public class Book {
         this.setCondition(condition);
         this.setBookID(bookID);
         this.setBookDescription(bookDescription);
+    }
+    
+    public Book(String userName, float ISBN, String condition, String bookDescription, long price, int negotiable)
+    {
+        this.setUserName(userName);
+        this.setNegotiable(negotiable);
+        this.setISBN(ISBN);
+        this.setPrice(price);
+        this.setCondition(condition);
+        this.setBookID(bookID);
+        this.setBookDescription(bookDescription);        
     }
 
     public String getUserName() {
@@ -45,11 +56,11 @@ public class Book {
         this.bookID = bookID;
     }
 
-    public int getISBN() {
+    public float getISBN() {
         return ISBN;
     }
 
-    public void setISBN(int ISBN) {
+    public void setISBN(float ISBN) {
         this.ISBN = ISBN;
     }
 
