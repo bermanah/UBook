@@ -19,7 +19,7 @@ public class Book {
     private int bookID = rnd.nextInt(10000000);
     private float ISBN;
 
-    public Book(String userName, int bookID, float ISBN2, String condition, String bookDescription, long price, int negotiable) {
+    public Book(String userName, int bookID, float ISBN2, String condition, String bookDescription, double price, int negotiable) {
         this.setUserName(userName);
         this.setNegotiable(negotiable);
         this.setISBN(ISBN2);
@@ -29,7 +29,7 @@ public class Book {
         this.setBookDescription(bookDescription);
     }
     
-    public Book(String userName, float ISBN, String condition, String bookDescription, long price, int negotiable)
+    public Book(String userName, float ISBN, String condition, String bookDescription, double price, int negotiable)
     {
         this.setUserName(userName);
         this.setNegotiable(negotiable);
@@ -80,11 +80,11 @@ public class Book {
         this.bookDescription = bookDescription;
     }
 
-    public long getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -97,7 +97,7 @@ public class Book {
     }
     private String condition;
     private String bookDescription;
-    private long price;
+    private double price;
     private int negotiable;
 
 }

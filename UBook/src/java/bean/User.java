@@ -16,6 +16,13 @@ public class User {
     private String email;
     private String university;
 
+    public User(String userName, String userType, String password, String email, String university) {
+        this.userName = userName;
+        this.userType = userType;
+        this.password = password;
+        this.email = email;
+        this.university = university;
+    }
     public String getUserName() {
         return userName;
     }

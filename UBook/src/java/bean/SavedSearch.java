@@ -15,6 +15,10 @@ public class SavedSearch {
     String dateOfSearch;
     String timeOfSearch;
     
+    public SavedSearch() {
+        
+    }
+    
     public SavedSearch(String userName, int bookID, String dateOfSearch, String timeOfSearch) {
         this.userName = userName;
         this.bookID = bookID;
