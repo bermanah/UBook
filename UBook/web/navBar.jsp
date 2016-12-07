@@ -43,8 +43,8 @@
                 out.print("<a class=\"navbar-brand\" href=\"index.jsp\">UBook</a>");
                 out.print("</div>");
                 out.print("<ul class=\"nav navbar-nav navbar-right\">");
-                out.print("<li><a href=\"register.html\"><span class=\"glyphicon glyphicon-user\"></span> Sign Up</a></li>");
-                out.print("<li><a href=\"login.html\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>");
+                out.print("<li><a href=\"register.jsp\"><span class=\"glyphicon glyphicon-user\"></span> Sign Up</a></li>");
+                out.print("<li><a href=\"login.jsp\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>");
                 out.print("</ul>");
                 out.print("</div>");
                 out.print("</nav>");
