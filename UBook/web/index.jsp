@@ -7,15 +7,11 @@
         <title>UBook_Home</title>
         <link rel="stylesheet" type="text/css" href="style.css"></link>
         <script src="//code.jquery.com/jquery.min.js"></script>
-        <script>
-            $.get("navigationBar.html", function(data){
-            $("#menu").replaceWith(data);
-            });
-        </script>
+        <jsp:include page="navBar.jsp" />
+        
     </head>
     
     <body>
-        <div id="menu"></div>
         <p>
             <img src="images/Logo_withBook.png" class="centerImage"alt="Logo" />
         </p>
