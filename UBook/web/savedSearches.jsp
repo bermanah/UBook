@@ -9,7 +9,7 @@
 <%
     if (session.getAttribute("loggedIn") == null)
     {
-        String url = "http://localhost:8084/UBook/login.html";
+        String url = "http://localhost:8084/UBook/login.jsp";
         response.sendRedirect(url);
     }
     String username = (String) session.getAttribute("username");
