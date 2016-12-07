@@ -6,6 +6,7 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
+<%@page import = "bean.Book, database.Database" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -31,13 +32,14 @@
                 overflow-y: scroll;
             }
         </style>
+        <jsp:include page="navBar.jsp" />
     </head>
     <body>
         
         <%
-            /* get a list of all Pets
-            ArrayList<book> petData = PetPersistence.getAllPets();
-            Iterator<book> it = petData.iterator();*/
+            String isbn = (String)session.getAttribute("isbn");
+            ArrayList<Book> results = database.Database.searchBooks(isbn);
+            Iterator<Book> it = results.iterator();
         %>
         
         <br>
@@ -51,56 +53,59 @@
                 <div class="panel-body">
                     <div class="panel  panel-body-custom">
                         <div class="panel-body">
-                            <table class="table table-hover specialCollapse">
-                                <tr>
-                                    <td>
-                                        <li>
-                                            one
-                                        </li>
-                                         <li>
-                                            one
-                                        </li>
-                                         <li>
-                                            one
-                                        </li>   
-                                    </td>
-                                    <td>Description</td>
-                                    <td>Links</td>
-                                </tr>
-                           </tbody>
-
+                            <table class="table table-hover pecialCollapse" rules="none">
+                            <%
+                                while (it.hasNext()) {
+                                    Book book = it.next();
+                                    
+                                    String negotiable = "";
+                                    if(book.isNegotiable() == 1){
+                                        negotiable = "Yes";
+                                    }
+                                    else{
+                                        negotiable = "No";
+                                    }
+                                    
+                                    out.println("<tr>");
+                                    out.println("<td>");
+                                    out.println("<ul style=\"list-style-type:none\">");
+                                    out.println("<li>" + book.getCondition() + "</li>");
+                                    out.println("<li>" + book.getPrice() + "</li>");
+                                    out.println("<li>" + negotiable + "</li>");
+                                    out.println("</ul>");
+                                    out.println("</td>");
+                                    out.println("<td>book.getBookDescription()</td>");
+                                    out.println("<td>");
+                                    out.println("<li> <a href=\"index.jsp\">More Information</a> </li>");
+                                    out.println("<li> <a href=\"index.jsp\">Save Book</a> </li>");
+                                    out.println("</td>");
+                                    out.println("</tr>");
+                                }
+                             %>  
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-
-        
-
-        <%
-            /*
-            <table border="1">
-            <tbody>
-                <tr><th>Name</th><th>Owner</th><th>Species</th>
-                    <th>Sex</th><th>Birth</th></tr>
-            while (it.hasNext()) {
-                Pet pet = it.next();
-                out.println("<tr>");
-                out.println("<td>" + pet.getName() + "</td>");
-                out.println("<td>" + pet.getOwner() + "</td>");
-                out.println("<td>" + pet.getSpecies() + "</td>");
-                out.println("<td>" + pet.getSex() + "</td>");
-                out.println("<td>" + pet.getBirth() + "</td>");
-                out.println("</tr>");
-            }
-
-            </tbody>
-        </table>*/
+       <%
+       /*                         <tr>
+                                    <td>
+                                        <ul style="list-style-type:none">
+                                            <li> one </li>
+                                            <li> two </li>
+                                            <li> three </li>
+                                        </ul>
+                                    </td>
+                                    <td>Description</td>
+                                    <td>
+                                        <ul style="list-style-type:none">
+                                            <li> Link one </li>
+                                            <li> Link two </li>
+                                        </ul>
+                                    </td>
+                                </tr>*/
         %>
-
-
-        </div>
         
     </body>
 </html>
