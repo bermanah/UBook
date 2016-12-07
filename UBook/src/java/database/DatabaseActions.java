@@ -43,6 +43,15 @@ public class DatabaseActions {
     public static ArrayList<Book> searchBooks(String ISBN) {
         return Database.searchBooks(ISBN);
     } 
+    public static boolean checkLogin(String userName, String password) {
+        User user  = new User(userName, password, null, null, null);
+        int check = Database.checkLogin(user);
+        if (check == 1){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public static ArrayList<SavedSearch> getSavedSearches(String userName){
         return Database.getSavedSearches(userName);
