@@ -40,18 +40,14 @@ public class LoginServlet extends HttpServlet {
         String userid = request.getParameter("Username");
         String password = request.getParameter("Password");
         
-        User user = new User();
-        user.setUserName(userid);
-        user.setPassword(password);
-        
-        if (Database.checkLogin(user) == 1)
+        if (DatabaseActions.checkLogin(userid, password))
         {           
             if (userid.equals("admin") && password.equals("ind!a3"))
             {
                 session.setAttribute("usertype", "admin");
             }
             session.setAttribute("loggedIn", true);
-            session.setAttribute("userid", userid);
+            session.setAttribute("username", userid);
             response.sendRedirect("http://localhost:8084/UBook/index.jsp");
         }
         else
