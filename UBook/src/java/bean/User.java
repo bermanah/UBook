@@ -23,6 +23,7 @@ public class User {
         this.email = email;
         this.university = university;
     }
+
     public String getUserName() {
         return userName;
     }
