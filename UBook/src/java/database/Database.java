@@ -10,7 +10,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.naming.*;
  /**
@@ -55,6 +58,27 @@ public class Database {
             return false;
         }
     }
+    public static boolean addSavedSearch(SavedSearch ss){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        Date date = new Date();
+        DBHandler handler = new DBHandler();
+        StringBuilder command = new StringBuilder();
+        command.append("INSERT INTO savedsearches VALUES( ");
+        command.append("'" + ss.getUserName() + "'");
+        command.append(", '" + ss.getBookID() + "'");
+        command.append(", '" + dateFormat.format(date) + "'");
+        command.append(", '" + timeFormat.format(date) + "'");
+        try {
+            int resultCount = handler.doCommand(command.toString());
+            handler.close();
+            return (resultCount > 0);
+        } catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+                
+    }
     
     public static int checkLogin(User user){
         DBHandler handler = new DBHandler();
@@ -96,8 +120,30 @@ public class Database {
                e.printStackTrace();
              }
             return result;
-}          
-    
-    }
+    }          
+   public static ArrayList<SavedSearch> getSavedSearches(String userName){
+            ArrayList<SavedSearch> result = new ArrayList<SavedSearch>();
+            DBHandler handler = new DBHandler();
+            StringBuilder query = new StringBuilder();
+            query.append("SELECT * from savedsearches WHERE Username = " + userName);
+            try {
+                ResultSet set = handler.doQuery(query.toString());
+                while (set.next()){
+                      int i = 1; // 1st column
+                String user = set.getString(i++);
+                int bookID = set.getInt(i++);
+                String date = set.getString(i++);
+                String time = set.getString(i++);
+                SavedSearch ss = new SavedSearch(userName, bookID, date, time);
+                result.add(ss);
+            }
+                handler.close();
+                }
+             catch (SQLException e){
+               e.printStackTrace();
+             }
+            return result;
+    }          
+}
   
 
