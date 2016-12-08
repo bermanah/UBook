@@ -46,7 +46,7 @@ public class AddSavedSearch extends HttpServlet {
         }
         
         session.setAttribute("saveSearchMessage", saveSearchMessage);
-        forwardRequest(request, response, "profile.jsp");
+        forwardRequest(request, response, "/profile.jsp");
     }
      
     /*

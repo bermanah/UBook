@@ -49,7 +49,7 @@ public class DropUser extends HttpServlet {
         
         session.setAttribute("dropUserMessage", dropUserMessage); 
         //forward to drop user page
-        forwardRequest(request, response, "/UBook/dropUser.jsp");
+        forwardRequest(request, response, "/dropUser.jsp");
     }
     
     /*

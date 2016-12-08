@@ -62,7 +62,7 @@ public class AddBookServlet extends HttpServlet {
                 addBookMessage = "Improper ISBN";
                 session.setAttribute("addBookMessage",addBookMessage);
                 //forward back to add book
-                forwardRequest(request, response, "/UBook/addBook.jsp");
+                forwardRequest(request, response, "/addBook.jsp");
 
             }
             else
@@ -73,14 +73,14 @@ public class AddBookServlet extends HttpServlet {
                     addBookMessage = "Successful listing!";
                     session.setAttribute("addBookMessage", addBookMessage);
                     //forward back to add book
-                    forwardRequest(request, response, "/UBook/addBook.jsp");
+                    forwardRequest(request, response, "/addBook.jsp");
                 }
                 else
                 {
                     addBookMessage = "Listing failed";
                     session.setAttribute("addBookMessage",addBookMessage);
                     //forward back to add book
-                    forwardRequest(request, response, "/UBook/addBook.jsp");
+                    forwardRequest(request, response, "/addBook.jsp");
                 }
                 
             }

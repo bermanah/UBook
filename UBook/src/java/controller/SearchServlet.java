@@ -42,7 +42,7 @@ public class SearchServlet extends HttpServlet {
         //set this to a session attribute
         session.setAttribute("searchResults", list);
         //forward request
-        forwardRequest(request, response, "/UBook/index.jsp");
+        forwardRequest(request, response, "/index.jsp");
     }
     
     /*

@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("Password");
         
         //validate login
-        if (DatabaseActions.checkLogin(userid, password))
+        if (DatabaseActions.checkLogin(userid, password) == true)
         {           
             //if the login is a user
             if (userid.equals("admin") && password.equals("ind!a3"))
@@ -50,13 +50,13 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("loggedIn", true);
             session.setAttribute("username", userid);
             //forward to search page
-            forwardRequest(request, response, "/UBook/index.jsp");
+            forwardRequest(request, response, "/index.jsp");
         }
         else
         {
             session.setAttribute("loginMessage", "Bad Login Credentials");
             //forward back to login page
-            forwardRequest(request,response, "/UBook/login.jsp");
+            forwardRequest(request,response, "/login.jsp");
         }
         
     }

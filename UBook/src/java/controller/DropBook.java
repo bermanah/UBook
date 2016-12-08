@@ -50,7 +50,7 @@ public class DropBook extends HttpServlet {
         
         session.setAttribute("dropBookMessage", dropBookMessage); 
         //forward to drop user page
-        forwardRequest(request, response, "/UBook/dropBook.jsp");
+        forwardRequest(request, response, "/dropBook.jsp");
         
     }
     
