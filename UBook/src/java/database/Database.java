@@ -22,13 +22,13 @@ import javax.naming.*;
 public class Database {
     public static boolean addUser(User user){
         DBHandler handler = new DBHandler();
-        StringBuilder command = new StringBuilder();
-        command.append("INSERT INTO user VALUES( ");
-        command.append("'" + user.getUserName() + "'");
-        command.append(", '" + user.getUserType() + "'");
-        command.append(", '" + user.getPassword() + "'");
-        command.append(", '" + user.getEmail() + "'");
-        command.append(", '" + user.getUniversity() + "'" );
+        String command = "INSERT INTO user VALUES(";
+        command += "'" + user.getUserName() + "'";
+        command += ", '" + user.getUserType() + "'";
+        command += ", '" + user.getPassword() + "'";
+        command += ", '" + user.getEmail() + "'";
+        command += ", '" + user.getUniversity() + "'" ;
+        command += ")";
         try {
            int resultCount = handler.doCommand(command.toString());
             handler.close();

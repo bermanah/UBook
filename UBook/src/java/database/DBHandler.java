@@ -17,7 +17,7 @@ import javax.naming.*;
 public class DBHandler {
   
     /** Database access credentials */
-    protected String driverName = "com.mysql.jdbc.Driver", url = "jdbc:mysql://localhost:3306/team16_db", userId = "team16", password = "ind!a3";
+    protected String driverName = "com.mysql.jdbc.Driver", url = "jdbc:mysql://grove.cs.jmu.edu:3306/team16_db", userId = "team16", password = "ind!a3";
     /** Database connection */
     private Connection con;
     /** SQL Statement */
@@ -41,7 +41,10 @@ public class DBHandler {
     public void open() throws SQLException {
         try {
             Class.forName(driverName);
+            Connection connection = DriverManager.getConnection(url, userId, password);
+            System.out.println("Connection Established!");
         } catch (ClassNotFoundException e) {
+            System.out.println("Could not connect");
             e.printStackTrace();
             return;
         }

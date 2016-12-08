@@ -77,7 +77,7 @@
             <textarea rows="4" cols="50" name="description"></textarea>
             <br/>
             <br/>
-            Condition: <input type="text" name="isbn">
+            Condition: <input type="text" name="condition">
             <br/>
             <br/>
             Will the price be negotiable?:
