@@ -10,6 +10,7 @@ import database.Database;
 import database.DatabaseActions;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,6 +42,11 @@ public class AddUserServlet extends HttpServlet {
         String password = request.getParameter("Password");
         String email = request.getParameter("Email");
         String uni = request.getParameter("Uni");
+
+        System.out.println(username);
+        System.out.println(password);
+        System.out.println(email);
+        System.out.println(uni);
         
         String usertype = "user";
         
@@ -48,28 +54,27 @@ public class AddUserServlet extends HttpServlet {
         {
             usertype = "admin";
         }
-        
-        if (username == null || password == null || email == null || uni == null)
-        {
-            session.setAttribute("signUpMessage", "ERROR: Please try again");
-            response.sendRedirect("/index.jsp");
 
-        }
-        else if (email.trim().length() == 0 || password.trim().length() == 0 || username.trim().length() == 0 || uni.trim().length() == 0)
+        if (username != null && password != null && email != null && uni != null)
         {
-            session.setAttribute("signUpMessage", "ERROR: Please try again");
-            response.sendRedirect("/index.jsp");
-
-        }
-        else
-        {
-            DatabaseActions.addUser(username, usertype, password, email, usertype);
+            DatabaseActions.addUser(username, usertype, password, email, uni);
             session.setAttribute("loggedIn", true);
             session.setAttribute("username", username);
             session.setAttribute("email", email);
             session.setAttribute("Uni", uni);
             
-            response.sendRedirect("/index.jsp");
+            forwardRequest(request, response, "/index.jsp");
         }
+        else
+        {
+            session.setAttribute("signupmessage", "ERROR: Please try again");
+            forwardRequest(request, response, "/register.jsp");
+
+        }
+    }
+    
+    private void forwardRequest(HttpServletRequest request, HttpServletResponse response, String url) throws IOException, ServletException {
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
     }
 }
