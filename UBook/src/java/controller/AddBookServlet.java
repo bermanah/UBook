@@ -63,7 +63,7 @@ public class AddBookServlet extends HttpServlet {
 
             Database.addBook(book);
             */
-            addBookMessage = "Successful Listing!";
+            //addBookMessage = "Successful Listing!";
         }
     }
 }

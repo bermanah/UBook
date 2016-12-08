@@ -40,7 +40,7 @@ public class DropBook extends HttpServlet {
         String username = (String) request.getParameter("userid");
         int bookID = Integer.parseInt(request.getParameter("bookID"));
         
-        Book book = new Book(username, bookID, 0, null, null, (long) 0.0, 0);
+        //Book book = new Book(username, bookID, 0, null, null, (long) 0.0, 0);
         
         //Database.dropBook(book);
         

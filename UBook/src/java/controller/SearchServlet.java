@@ -43,7 +43,7 @@ public class SearchServlet extends HttpServlet {
         
         session.setAttribute("searchResults", list);
         
-        response.sendRedirect("/results.jsp");
+        //response.sendRedirect("/results.jsp");
     }
 
 }

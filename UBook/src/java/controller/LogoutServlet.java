@@ -23,11 +23,11 @@ public class LogoutServlet extends HttpServlet {
 
     public void service(HttpServletRequest request, HttpServletResponse response) throws IOException
     {
-        
+        //
         response.setContentType("text/html");  
         PrintWriter out=response.getWriter();    
 
-        HttpSession session = request.getSession(true);
+       HttpSession session = request.getSession(true);
         session.setAttribute("loggedIn", false);
         session.setAttribute("userid", null);
         session.invalidate();

@@ -37,11 +37,11 @@ public class DropUser extends HttpServlet {
         HttpSession session = request.getSession();
         String dropUserMessage = null;
         
-        User user = new User();
+        //User user = new User();
         
         String username = (String) request.getParameter("userid");
         
-        user.setUserName(username);
+        //user.setUserName(username);
         
         //Database.dropUser(user);
         
