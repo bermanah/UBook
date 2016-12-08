@@ -42,9 +42,7 @@ public class DBHandler {
         try {
             Class.forName(driverName);
             Connection connection = DriverManager.getConnection(url, userId, password);
-            System.out.println("Connection Established!");
         } catch (ClassNotFoundException e) {
-            System.out.println("Could not connect");
             e.printStackTrace();
             return;
         }

@@ -37,7 +37,7 @@ public class AddBookServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String addBookMessage = null;
         
-        if (session.getAttribute("submit") != null)
+        if (request.getParameter("submit") != null)
         {                   
             //Seller's username
             String username = (String) session.getAttribute("username");
@@ -51,21 +51,13 @@ public class AddBookServlet extends HttpServlet {
             String description = request.getParameter("description");
             //book negotiation status
             int negotiable = 0;
-            if (session.getAttribute("negotiable").equals("yes"))
+            if (request.getParameter("negotiable").equals("yes"))
             {
                 negotiable = 1;
             }
             
             //check if the isbn is valid
-            if (isbn <= 999999999.0 && (isbn > 999999999.0 && isbn <= 999999999999.0) || isbn > 999999999999.0)
-            {
-                addBookMessage = "Improper ISBN";
-                session.setAttribute("addBookMessage",addBookMessage);
-                //forward back to add book
-                forwardRequest(request, response, "/addBook.jsp");
-
-            }
-            else
+            if (request.getParameter("isbn").length() == 10 || request.getParameter("isbn").length() == 13)
             {
                 //validate addition to the database
                 if (DatabaseActions.addBook(username, isbn, condition, description, price, negotiable) == true)
@@ -81,8 +73,14 @@ public class AddBookServlet extends HttpServlet {
                     session.setAttribute("addBookMessage",addBookMessage);
                     //forward back to add book
                     forwardRequest(request, response, "/addBook.jsp");
-                }
-                
+                }               
+            }
+            else 
+            {               
+                addBookMessage = "Improper ISBN";
+                session.setAttribute("addBookMessage",addBookMessage);
+                //forward back to add book
+                forwardRequest(request, response, "/addBook.jsp");
             }
         }
     }

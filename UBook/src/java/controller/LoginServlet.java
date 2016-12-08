@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
         
         //validate login
         if (DatabaseActions.checkLogin(userid, password) == true)
-        {           
+        {      
             //if the login is a user
             if (userid.equals("admin") && password.equals("ind!a3"))
             {
