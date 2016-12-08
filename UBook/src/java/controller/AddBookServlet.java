@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package controller;
 
 import bean.Book;
@@ -12,6 +6,7 @@ import database.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +16,8 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Thomas
+ * @author Thomas Erlendson 
+ * @date December 8th, 2016
  */
 @WebServlet(name = "AddBookServlet", urlPatterns = {"/addBook"})
 public class AddBookServlet extends HttpServlet {
@@ -37,33 +33,65 @@ public class AddBookServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Random rnd = new Random();
-
 
         HttpSession session = request.getSession();
         String addBookMessage = null;
         
-        session.setAttribute("addBookMessage", addBookMessage);
-        
-        String username = (String) session.getAttribute("userid");
-        String condition = request.getParameter("condition");
-        String description = request.getParameter("description");
-        boolean negotiable = true;
-        int price = Integer.parseInt(request.getParameter("price"));
-        float isbn = Float.parseFloat(request.getParameter("isbn"));
-        
-        if (isbn <= 999999999.0 || isbn > 999999999999.0)
-        {
-            addBookMessage = "Improper ISBN";
-        }
-        else
-        {
-            /*        
-            Book book = new Book(username, rnd.nextInt(10000000), isbn, condition, description, price, negotiable);
+        if (session.getAttribute("submit") != null)
+        {                   
+            //Seller's username
+            String username = (String) session.getAttribute("username");
+            //price of the book
+            double price = Double.parseDouble(request.getParameter("price"));
+            //book isbn
+            float isbn = Float.parseFloat(request.getParameter("isbn"));
+            //book condition
+            String condition = request.getParameter("condition");
+            //book description
+            String description = request.getParameter("description");
+            //book negotiation status
+            int negotiable = 0;
+            if (session.getAttribute("negotiable").equals("yes"))
+            {
+                negotiable = 1;
+            }
+            
+            //check if the isbn is valid
+            if (isbn <= 999999999.0 && (isbn > 999999999.0 && isbn <= 999999999999.0) || isbn > 999999999999.0)
+            {
+                addBookMessage = "Improper ISBN";
+                session.setAttribute("addBookMessage",addBookMessage);
+                //forward back to add book
+                forwardRequest(request, response, "/UBook/addBook.jsp");
 
-            Database.addBook(book);
-            */
-            //addBookMessage = "Successful Listing!";
+            }
+            else
+            {
+                //validate addition to the database
+                if (DatabaseActions.addBook(username, isbn, condition, description, price, negotiable) == true)
+                {
+                    addBookMessage = "Successful listing!";
+                    session.setAttribute("addBookMessage", addBookMessage);
+                    //forward back to add book
+                    forwardRequest(request, response, "/UBook/addBook.jsp");
+                }
+                else
+                {
+                    addBookMessage = "Listing failed";
+                    session.setAttribute("addBookMessage",addBookMessage);
+                    //forward back to add book
+                    forwardRequest(request, response, "/UBook/addBook.jsp");
+                }
+                
+            }
         }
+    }
+    /*
+     * forward request to a new location 
+     */
+    private void forwardRequest(HttpServletRequest request, HttpServletResponse response, String url) throws IOException, ServletException 
+    {
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
     }
 }

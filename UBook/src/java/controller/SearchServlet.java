@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import bean.Book;
@@ -11,6 +6,7 @@ import database.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +16,8 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author erlendtp
+ * @author Thomas Erlendson
+ * @date December 8th, 2016
  */
 @WebServlet(name = "SearchServlet", urlPatterns = {"/search"})
 public class SearchServlet extends HttpServlet {
@@ -39,11 +36,21 @@ public class SearchServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         
+        //get an array list of the books with corresponding isbn 
         ArrayList<Book> list =  Database.searchBooks((String) request.getParameter("isbn"));
         
+        //set this to a session attribute
         session.setAttribute("searchResults", list);
-        
-        //response.sendRedirect("/results.jsp");
+        //forward request
+        forwardRequest(request, response, "/UBook/index.jsp");
     }
-
+    
+    /*
+     * forward request to a new location 
+     */
+    private void forwardRequest(HttpServletRequest request, HttpServletResponse response, String url) throws IOException, ServletException 
+    {
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
+    }   
 }

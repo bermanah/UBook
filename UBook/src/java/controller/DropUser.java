@@ -1,14 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import bean.User;
+import database.AdminPrivileges.AdminActions;
 import database.Database;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +15,8 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Thomas
+ * @author Thomas Erlendson
+ * @date December 8th, 2016
  */
 @WebServlet(name = "DropUser", urlPatterns = {"/dropUser"})
 public class DropUser extends HttpServlet {
@@ -37,17 +35,29 @@ public class DropUser extends HttpServlet {
         HttpSession session = request.getSession();
         String dropUserMessage = null;
         
-        //User user = new User();
-        
         String username = (String) request.getParameter("userid");
         
-        //user.setUserName(username);
+        //validate droping the user
+        if (AdminActions.deleteUser(username) == true)
+        {
+            dropUserMessage = "Successful Drop!";
+        }
+        else
+        {
+            dropUserMessage = "Unuccessful Drop.";
+        }
         
-        //Database.dropUser(user);
-        
-        dropUserMessage = "Successful Drop!";
-        
-        response.sendRedirect("/index.html");
-        
+        session.setAttribute("dropUserMessage", dropUserMessage); 
+        //forward to drop user page
+        forwardRequest(request, response, "/UBook/dropUser.jsp");
+    }
+    
+    /*
+     * forward request to a new location 
+     */
+    private void forwardRequest(HttpServletRequest request, HttpServletResponse response, String url) throws IOException, ServletException 
+    {
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
     }
 }

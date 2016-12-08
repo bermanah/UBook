@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.io.IOException;
@@ -16,14 +11,15 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Thomas
+ * @author Thomas Erlendson
+ * @date December 8th, 2016
  */
 @WebServlet(name = "LogoutServlet", urlPatterns = {"/logout"})
 public class LogoutServlet extends HttpServlet {
 
     public void service(HttpServletRequest request, HttpServletResponse response) throws IOException
     {
-        //
+        
         response.setContentType("text/html");  
         PrintWriter out=response.getWriter();    
 

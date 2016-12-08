@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import bean.User;
@@ -20,7 +15,8 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author erlendtp
+ * @author Thomas Erlendson
+ * @date December 8th, 2016
  */
 @WebServlet(name = "AddUser", urlPatterns = {"/signUp"})
 public class AddUserServlet extends HttpServlet {
@@ -38,41 +34,53 @@ public class AddUserServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         
+        //username
         String username = request.getParameter("Username");
+        //password
         String password = request.getParameter("Password");
+        //email
         String email = request.getParameter("Email");
+        //university
         String uni = request.getParameter("Uni");
-
-        System.out.println(username);
-        System.out.println(password);
-        System.out.println(email);
-        System.out.println(uni);
-        
+        //type of user
         String usertype = "user";
         
+        //changes the type of user to admin
         if (username.equals("admin") && password.equals("ind!a3"))
         {
             usertype = "admin";
         }
-
+        //are any of the forms null
         if (username != null && password != null && email != null && uni != null)
         {
-            DatabaseActions.addUser(username, usertype, password, email, uni);
-            session.setAttribute("loggedIn", true);
-            session.setAttribute("username", username);
-            session.setAttribute("email", email);
-            session.setAttribute("Uni", uni);
-            
-            forwardRequest(request, response, "/index.jsp");
+            //validate addition to the database
+            if (DatabaseActions.addUser(username, usertype, password, email, uni) == true)
+            {
+                session.setAttribute("loggedIn", true);
+                session.setAttribute("username", username);
+                session.setAttribute("email", email);
+                session.setAttribute("Uni", uni);      
+                //forward to search menu
+                forwardRequest(request, response, "/index.jsp");
+            }
+            else
+            {
+                session.setAttribute("signupmessage", "ERROR: Please try again");
+                //forward back to login
+                forwardRequest(request, response, "/register.jsp");
+            }
         }
         else
         {
             session.setAttribute("signupmessage", "ERROR: Please try again");
+            //forward back to login
             forwardRequest(request, response, "/register.jsp");
-
         }
     }
     
+    /*
+     * forward request to a new location 
+     */
     private void forwardRequest(HttpServletRequest request, HttpServletResponse response, String url) throws IOException, ServletException {
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);

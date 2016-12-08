@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import bean.*;
@@ -10,6 +5,7 @@ import database.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +15,8 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author erlendtp
+ * @author Thomas Erlendson
+ * @date December 8th, 2016
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
@@ -37,24 +34,38 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         
+        //username
         String userid = request.getParameter("Username");
+        //password
         String password = request.getParameter("Password");
         
+        //validate login
         if (DatabaseActions.checkLogin(userid, password))
         {           
+            //if the login is a user
             if (userid.equals("admin") && password.equals("ind!a3"))
             {
                 session.setAttribute("usertype", "admin");
             }
             session.setAttribute("loggedIn", true);
             session.setAttribute("username", userid);
-            response.sendRedirect("http://localhost:8084/UBook/index.jsp");
+            //forward to search page
+            forwardRequest(request, response, "/UBook/index.jsp");
         }
         else
         {
             session.setAttribute("loginMessage", "Bad Login Credentials");
-            response.sendRedirect("http://localhost:8084/UBook/login.html");
+            //forward back to login page
+            forwardRequest(request,response, "/UBook/login.jsp");
         }
         
+    }
+    
+    /*
+     * forward request to a new location 
+     */
+    private void forwardRequest(HttpServletRequest request, HttpServletResponse response, String url) throws IOException, ServletException {
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
     }
 }
