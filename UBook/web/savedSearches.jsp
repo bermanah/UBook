@@ -76,6 +76,9 @@
                                     out.println("<li> Price: $" + book.getPrice() + "</li>");
                                     out.println("<li> Condition: " + book.getCondition() + "</li>");
                                     out.println("<li> Negotiable? " + negotiable + "</li>");
+                                    out.println("<li> Date of Search: " + search.getDateOfSearch() + "</li>");
+                                    out.println("<li> Time of Search: " + search.getTimeOfSearch() + "</li>");
+
                                     out.println("</ul>");
                                     out.println("</td>");
                                     out.println("<td style=\"width:40%\"> Description: " + book.getBookDescription() + "</td>");
@@ -83,9 +86,9 @@
                                     out.println("<a href class=\"links\"=\"index.jsp\">More Information</a>");
                                     out.println("<br/>");
                                     //out.println("<a href class=\"links\"=\"index.jsp\">Save Book</a>");
-                                    out.print("<form class=\"form \"action=\"save\" method=\"post\" name=\"save\">"
+                                    out.print("<form class=\"form \"action=\"delete\" method=\"post\" name=\"delete\">"
                                             + "<input type=\"hidden\" name=\"book\" value=" + book.getBookID() + "></input>"
-                                            + "<button type = \"submit\" class=\"btn btn-default\">Save Book</button></form>");
+                                            + "<button type = \"submit\" class=\"btn btn-default\">Delete from Saved</button></form>");
                                     out.println("</td>");
                                     out.println("</tr>");
                                 }

@@ -39,7 +39,7 @@ public class DropBook extends HttpServlet {
         int bookID = Integer.parseInt(request.getParameter("bookID"));
 
         //validate droping the user
-        if (/*AdminActions.deleteBook(username) ==*/ true)
+        if (AdminActions.deleteBook(bookID) == true)
         {
             dropBookMessage = "Successful Drop!";
         }

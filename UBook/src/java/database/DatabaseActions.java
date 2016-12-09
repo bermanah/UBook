@@ -78,11 +78,12 @@ public class DatabaseActions {
     }
     
     public static Book getBooksInfo(int bookID){
-        ArrayList<Book> list = new ArrayList<Book>();
-        Book book = new Book(list.get(1).getUserName(), list.get(1).getISBN(), list.get(1).getCondition(), list.get(1).getBookDescription(), 
-                list.get(1).getPrice(), list.get(1).isNegotiable());
-        return book;
+        return Database.getBookInfo(bookID);
 
+    }
+    
+    public static boolean deleteSavedSearch(String username, int bookID){
+        return Database.deleteSavedSearch(username, bookID);
     }
 
 

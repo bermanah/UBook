@@ -237,8 +237,8 @@ public class Database {
             return result;
     } 
     
-    public static ArrayList<Book> getBookInfo(int bookID){
-            ArrayList<Book> result = new ArrayList<Book>();
+    public static Book getBookInfo(int bookID){
+            Book book = new Book();
             String query = "SELECT * from book WHERE bookID = '" + bookID + "'";
             try {
                 DBHandler handler = new DBHandler();
@@ -253,16 +253,31 @@ public class Database {
                     String bookDescription = set.getString(i++);
                     long price = set.getLong(i++);
                     int negotiable = set.getInt(i++);
-                    Book book = new Book(userName, bookID, ISBN2, condition, bookDescription, price, negotiable);
-                    result.add(book);
+                    book = new Book(userName, bookID, ISBN2, condition, bookDescription, price, negotiable);
+
                 }
                 handler.close();
              }
              catch (SQLException e){
                e.printStackTrace();
              }
-            return result;
+            return book;
     } 
+    
+    public static boolean deleteSavedSearch(String username, int bookID){
+        DBHandler handler = new DBHandler();
+        StringBuilder command = new StringBuilder();
+        command.append("DELETE FROM savedsearches WHERE Username = '" + username + "' AND bookID = '" + bookID + "'");
+         try {
+           int resultCount = handler.doCommand(command.toString());
+            handler.close();
+            return (resultCount > 0);
+        } catch(SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+        
+    }
 }
   
 
