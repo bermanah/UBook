@@ -278,6 +278,33 @@ public class Database {
         }
         
     }
+    
+    public static User getUserInfo(String username){
+        User user = new User(null, null, null, null, null);
+        String query = "SELECT * from user WHERE Username = '" + username + "'";
+        try {
+            DBHandler handler = new DBHandler();
+            ResultSet set = handler.doQuery(query);
+            ResultSetMetaData rsmd = set.getMetaData();
+            while (set.next()){
+                   int i = 1; // 1st column
+                    String userName = set.getString(i++);
+                    String usertype = set.getString(i++);
+                    String password = set.getString(i++);
+                    String email = set.getString(i++);
+                    String uni = set.getString(i++);
+                    user.setUserName(userName);
+                    user.setUserType(usertype);
+                    user.setUniversity(uni);
+                    user.setEmail(email);
+            }
+            handler.close();
+         }
+         catch (SQLException e){
+           e.printStackTrace();
+         }
+        return user;
+    } 
 }
   
 
