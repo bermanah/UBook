@@ -36,9 +36,7 @@ public class DatabaseActions {
         return Database.addSavedSearch(ss);
     }
     public static boolean deleteBook(int bookID) {
-        Book dropBook = new Book();
-        dropBook.setBookID(bookID);
-        return Database.deleteBook(dropBook);
+        return Database.deleteBook(bookID);
     }
     
     public static ArrayList<Book> searchBooks(String ISBN) {

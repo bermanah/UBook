@@ -148,10 +148,10 @@ public class Database {
              }
             return result;
     }          
-     public static boolean deleteBook(Book book){
+     public static boolean deleteBook(int bookID){
         DBHandler handler = new DBHandler();
         StringBuilder command = new StringBuilder();
-        command.append("DELETE FROM book WHERE Username = '" + book.getUserName() + "' AND ISBN = '" + book.getISBN() + "'");
+        command.append("DELETE FROM book WHERE bookID = '" + bookID + "'");
          try {
            int resultCount = handler.doCommand(command.toString());
             handler.close();
