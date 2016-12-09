@@ -24,10 +24,11 @@ public class DatabaseActions {
         return Database.addUser(newUser);
     }
 
-    public static boolean addBook(String userName, float ISBN, String condition, String description, double price, int negotiable) {
+    public static boolean addBook(String userName, String ISBN, String condition, String description, double price, int negotiable) {
         Book newBook = new Book(userName, ISBN, condition, description, price, negotiable);
         return Database.addBook(newBook);
     }
+    
     public static boolean addSavedSearch(String userName, int bookID) {
         SavedSearch ss = new SavedSearch();
         ss.setBookID(bookID);
@@ -44,7 +45,7 @@ public class DatabaseActions {
         return Database.searchBooks(ISBN);
     } 
     public static boolean checkLogin(String userName, String password) {
-        User user  = new User(userName, password, null, null, null);
+        User user  = new User(userName, null, password, null, null);
         int check = Database.checkLogin(user);
         if (check == 1){
             return true;
@@ -56,6 +57,36 @@ public class DatabaseActions {
     public static ArrayList<SavedSearch> getSavedSearches(String userName){
         return Database.getSavedSearches(userName);
     }
+    
+    public static ArrayList<User> getUser(String username){
+        return Database.getUser(username);
+    }
+    
+    public static boolean checkUserName(String userName) {
+        User user  = new User(userName, null, null, null, null);
+        int check = Database.checkUserName(user);
+        if (check == 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public static ArrayList<Book> getSellingBooks(String username){
+        User user = new User(username, null, null, null, null);
+        return Database.getSellingBooks(user);
+    }
+    
+    public static Book getBooksInfo(int bookID){
+        ArrayList<Book> list = new ArrayList<Book>();
+        Book book = new Book(list.get(1).getUserName(), list.get(1).getISBN(), list.get(1).getCondition(), list.get(1).getBookDescription(), 
+                list.get(1).getPrice(), list.get(1).isNegotiable());
+        return book;
+
+    }
+
+
+
 
     
 }

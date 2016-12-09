@@ -14,12 +14,12 @@ import java.util.UUID;
  */
 public class Book {
 
-    Random rnd = new Random();
+    //Random rnd = new Random();
     private String userName;
-    private int bookID = rnd.nextInt(10000000);
-    private float ISBN;
+    private int bookID;
+    private String ISBN;
 
-    public Book(String userName, int bookID, float ISBN2, String condition, String bookDescription, double price, int negotiable) {
+    public Book(String userName, int bookID, String ISBN2, String condition, String bookDescription, double price, int negotiable) {
         this.setUserName(userName);
         this.setNegotiable(negotiable);
         this.setISBN(ISBN2);
@@ -29,8 +29,9 @@ public class Book {
         this.setBookDescription(bookDescription);
     }
     
-    public Book(String userName, float ISBN, String condition, String bookDescription, double price, int negotiable)
+    public Book(String userName, String ISBN, String condition, String bookDescription, double price, int negotiable)
     {
+        
         this.setUserName(userName);
         this.setNegotiable(negotiable);
         this.setISBN(ISBN);
@@ -43,6 +44,7 @@ public class Book {
     public Book() {
 
     }
+    
 
     public String getUserName() {
         return userName;
@@ -60,11 +62,11 @@ public class Book {
         this.bookID = bookID;
     }
 
-    public float getISBN() {
+    public String getISBN() {
         return ISBN;
     }
 
-    public void setISBN(float ISBN) {
+    public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
 

@@ -1,5 +1,7 @@
 package controller;
 
+import bean.Book;
+import bean.SavedSearch;
 import database.DatabaseActions;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,7 +18,7 @@ import javax.servlet.http.HttpSession;
  * @author Thomas Erlendson
  * @date December 8th, 2016
  */
-@WebServlet(name = "AddSavedSearch", urlPatterns = {"/saveSearch"})
+@WebServlet(name = "AddSavedSearch", urlPatterns = {"/save"})
 public class AddSavedSearch extends HttpServlet {
 
     /**
@@ -30,13 +32,14 @@ public class AddSavedSearch extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         HttpSession session = request.getSession(true);
         String saveSearchMessage = null;        
         
-        String username = request.getParameter("username");
-        int bookID = Integer.parseInt(request.getParameter("bookID"));
-        
-        if (DatabaseActions.addSavedSearch(username, bookID) == true)
+        String username = (String) session.getAttribute("username");
+        int id = Integer.parseInt(request.getParameter("book"));
+                
+        if (DatabaseActions.addSavedSearch(username, id) == true)
         {
             saveSearchMessage = "Successful saved search";
         }
@@ -46,7 +49,7 @@ public class AddSavedSearch extends HttpServlet {
         }
         
         session.setAttribute("saveSearchMessage", saveSearchMessage);
-        forwardRequest(request, response, "/profile.jsp");
+        forwardRequest(request, response, "/savedSearches.jsp");
     }
      
     /*

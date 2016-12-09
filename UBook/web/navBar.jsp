@@ -58,7 +58,8 @@
                 out.print("</div>");
                 out.print("<ul class=\"nav navbar-nav navbar-right\">");
                 out.print("<li><a href=\"profile.jsp\"><span class=\"glyphicon glyphicon-user\"></span> Profile</a></li>");
-                out.print("<li><a href=\"login.html\"><span class=\"glyphicon glyphicon-log-out\"></span> Logout</a></li>");
+                out.print("<li><form class=\"navbar-form navbar-right\"action=\"logout\" method=\"post\" name=\"Logout\">"
+                        + "<button type = \"submit\" class=\"glyphicon glyphicon-log-out btn btn-default\">Logout</button></form></li>");
                 out.print("</ul>");
                 out.print("</div>");
                 out.print("</nav>");

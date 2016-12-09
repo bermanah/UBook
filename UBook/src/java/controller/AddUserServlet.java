@@ -36,6 +36,14 @@ public class AddUserServlet extends HttpServlet {
         
         //username
         String username = request.getParameter("Username");
+        
+        if (DatabaseActions.checkUserName(username) == false)
+        {
+            session.setAttribute("signupmessage", "ERROR: Username taken");
+            //forward back to login
+            forwardRequest(request, response, "/register.jsp");
+        }
+        
         //password
         String password = request.getParameter("Password");
         //email

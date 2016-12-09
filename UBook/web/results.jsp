@@ -31,6 +31,9 @@
                 height:100vh;
                 overflow-y: scroll;
             }
+            .links{
+                color: #8856a1;
+            }
         </style>
         <jsp:include page="navBar.jsp" />
     </head>
@@ -64,20 +67,23 @@
                                     }
                                     else{
                                         negotiable = "No";
-                                    }
-                                    
+                                    }                                    
                                     out.println("<tr>");
-                                    out.println("<td>");
+                                    out.println("<td style=\"width:30%\">");
                                     out.println("<ul style=\"list-style-type:none\">");
-                                    out.println("<li>" + book.getCondition() + "</li>");
-                                    out.println("<li>" + book.getPrice() + "</li>");
-                                    out.println("<li>" + negotiable + "</li>");
+                                    out.println("<li> Price: $" + book.getPrice() + "</li>");
+                                    out.println("<li> Condition: " + book.getCondition() + "</li>");
+                                    out.println("<li> Negotiable? " + negotiable + "</li>");
                                     out.println("</ul>");
                                     out.println("</td>");
-                                    out.println("<td>book.getBookDescription()</td>");
+                                    out.println("<td style=\"width:40%\"> Description: " + book.getBookDescription() + "</td>");
                                     out.println("<td>");
-                                    out.println("<li> <a href=\"index.jsp\">More Information</a> </li>");
-                                    out.println("<li> <a href=\"index.jsp\">Save Book</a> </li>");
+                                    out.println("<a href class=\"links\"=\"index.jsp\">More Information</a>");
+                                    out.println("<br/>");
+                                    //out.println("<a href class=\"links\"=\"index.jsp\">Save Book</a>");
+                                    out.print("<form class=\"form \"action=\"save\" method=\"post\" name=\"save\">"
+                                            + "<input type=\"hidden\" name=\"book\" value=" + book.getBookID() + "></input>"
+                                            + "<button type = \"submit\" class=\"btn btn-default\">Save Book</button></form>");
                                     out.println("</td>");
                                     out.println("</tr>");
                                 }
@@ -87,25 +93,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-       <%
-       /*                         <tr>
-                                    <td>
-                                        <ul style="list-style-type:none">
-                                            <li> one </li>
-                                            <li> two </li>
-                                            <li> three </li>
-                                        </ul>
-                                    </td>
-                                    <td>Description</td>
-                                    <td>
-                                        <ul style="list-style-type:none">
-                                            <li> Link one </li>
-                                            <li> Link two </li>
-                                        </ul>
-                                    </td>
-                                </tr>*/
-        %>
-        
+        </div>       
     </body>
 </html>

@@ -16,7 +16,7 @@
             <img src="images/Logo_withBook.png" class="centerImage"alt="Logo" />
         </p>
         
-        <form method="post" action="search" id="myform" align="center">
+        <form action="search" method="post" id="myform" align="center">
             <p> 
                 <label>ISBN:
                     <input type="text" id="isbn" name="isbn" size="30"/>

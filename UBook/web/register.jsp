@@ -87,7 +87,11 @@ and open the template in the editor.
 			  <input type="password" class="form-control" name="Password" placeholder="Password" required=""/>
 
 			  <button class="btn btn-lg btn-block btn-custom"  name="Submit" value="Register" type="Submit">Register</button>  			
-		</form>			
+		</form>	
+                <% 
+                    String message = (String) session.getAttribute("signupmessage"); 
+                    //out.println(message);
+                %>
 	</div>
         </div>
     </body>

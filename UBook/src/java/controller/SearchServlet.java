@@ -32,17 +32,19 @@ public class SearchServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        
         //get an array list of the books with corresponding isbn 
-        ArrayList<Book> list =  Database.searchBooks((String) request.getParameter("isbn"));
+        //ArrayList<Book> list =  database.Database.searchBooks((String) request.getParameter("isbn"));
+        String isbn = request.getParameter("isbn");
         
         //set this to a session attribute
-        session.setAttribute("searchResults", list);
+        //session.setAttribute("searchResults", list);
+        session.setAttribute("isbn", isbn);
+
         //forward request
-        forwardRequest(request, response, "/index.jsp");
+        forwardRequest(request, response, "/results.jsp");
     }
     
     /*

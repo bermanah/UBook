@@ -12,10 +12,10 @@
         String url = "http://localhost:8084/UBOOKTESTS/login.jsp";
         response.sendRedirect(url);
     }*/
-    session.setAttribute("username", "erlendtp");
     String username = (String) session.getAttribute("username");
-    String uni = "James Madison University";
-    String email = "erlendtp@dukes.jmu.edu";
+    String uni = (String) session.getAttribute("userUni");
+    String email = (String) session.getAttribute("userEmail");
+    String userType = (String) session.getAttribute("userType");
     /*
     User user = new User();
     user.setUserName(session.getArritube("username"));
@@ -77,6 +77,9 @@
                                 </p>
                                 <p style="text-indent: 5em">
                                     University: <% out.print(uni); %>
+                                </p>
+                                <p style="text-indent: 5em">
+                                    User Credentials: <% out.print(userType); %>
                                 </p>
                                 <br/>
                                 <hr>

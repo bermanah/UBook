@@ -44,7 +44,7 @@ public class AddBookServlet extends HttpServlet {
             //price of the book
             double price = Double.parseDouble(request.getParameter("price"));
             //book isbn
-            float isbn = Float.parseFloat(request.getParameter("isbn"));
+            String isbn = request.getParameter("isbn");
             //book condition
             String condition = request.getParameter("condition");
             //book description
@@ -57,7 +57,7 @@ public class AddBookServlet extends HttpServlet {
             }
             
             //check if the isbn is valid
-            if (request.getParameter("isbn").length() == 10 || request.getParameter("isbn").length() == 13)
+            if (isbn.length() == 10 || isbn.length() == 13)
             {
                 //validate addition to the database
                 if (DatabaseActions.addBook(username, isbn, condition, description, price, negotiable) == true)

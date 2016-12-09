@@ -5,6 +5,7 @@ import database.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,13 +43,13 @@ public class LoginServlet extends HttpServlet {
         //validate login
         if (DatabaseActions.checkLogin(userid, password) == true)
         {      
-            //if the login is a user
-            if (userid.equals("admin") && password.equals("ind!a3"))
-            {
-                session.setAttribute("usertype", "admin");
-            }
             session.setAttribute("loggedIn", true);
             session.setAttribute("username", userid);
+            ArrayList<User> user = DatabaseActions.getUser(userid);
+            User login = user.get(0);
+            session.setAttribute("userEmail", login.getEmail());
+            session.setAttribute("userUni", login.getUniversity());
+            session.setAttribute("userType", login.getUserType());
             //forward to search page
             forwardRequest(request, response, "/index.jsp");
         }
