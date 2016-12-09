@@ -83,9 +83,12 @@ public class DatabaseActions {
     public static boolean deleteSavedSearch(String username, int bookID){
         return Database.deleteSavedSearch(username, bookID);
     }
-
-
-
-
     
+    public static User getUserInfo(String username) {
+        return Database.getUserInfo(username);
+    }
+
+
+
+
 }
