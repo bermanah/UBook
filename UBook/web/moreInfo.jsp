@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>User Profile</title>
+        <title>More Information</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -67,15 +67,6 @@
                                 </p>
                                 <br/>
                                 <hr>
-                            <h3>
-                                Actions:
-                            </h3>    
-                                <p>
-                                <a class="btn btn-custom" href="savedSearches.jsp">My saved searches</a>
-                                <a class="btn btn-custom" href="viewListings.jsp" >My books for sale</a>
-                                <a class="btn btn-custom" href="addBook.jsp">Add a book for sale</a>
-                                <a class="btn btn-custom" href="index.jsp">Search an ISBN</a>
-                                </p>
 
                         </div>
                     </div>

@@ -87,7 +87,6 @@
                                     out.println("<td style=\"width:40%\"> Description: " + book.getBookDescription() + "</td>");
                                     out.println("<td>");
                                     out.println("<td>");
-                                    out.println("<a href class=\"links\"=\"index.jsp\">More Information</a>");
                                     out.println("<br/>");
                                     out.print("<form class=\"form \"action=\"deleteBook\" method=\"post\" name=\"deleteBook\">"
                                             + "<input type=\"hidden\" name=\"book\" value=" + book.getBookID() + "></input>"
