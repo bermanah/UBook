@@ -67,7 +67,8 @@ public class AddUserServlet extends HttpServlet {
                 session.setAttribute("loggedIn", true);
                 session.setAttribute("username", username);
                 session.setAttribute("email", email);
-                session.setAttribute("Uni", uni);      
+                session.setAttribute("Uni", uni); 
+                session.setAttribute("userType", usertype);
                 //forward to search menu
                 forwardRequest(request, response, "/index.jsp");
             }

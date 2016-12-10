@@ -16,12 +16,6 @@
     String uni = (String) session.getAttribute("userUni");
     String email = (String) session.getAttribute("userEmail");
     String userType = (String) session.getAttribute("userType");
-    /*
-    User user = new User();
-    user.setUserName(session.getArritube("username"));
-    String uni = Database.getUserUniversity(user);
-    String email = Database.getUserEmail(user);
-    */
 %>
 <html>
     <head>
@@ -90,6 +84,13 @@
                                 <a class="btn btn-custom" href="savedSearches.jsp">My saved searches</a>
                                 <a class="btn btn-custom" href="viewListings.jsp" >My books for sale</a>
                                 <a class="btn btn-custom" href="addBook.jsp">Add a book for sale</a>
+                                <%
+                                    if (userType.equals("admin"))
+                                    {
+                                            out.print("<a class=\"btn btn-custom\" href=\"users.jsp\">View users</a>");
+                                            out.print("<a class=\"btn btn-custom\" href=\"books.jsp\">View all books for sale</a>");
+                                    }
+                                %>
                                 </p>
 
                         </div>

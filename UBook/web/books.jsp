@@ -49,7 +49,17 @@
         <br>
         <br>
         <div class="container">
-            <h2>Users</h2>
+            <h2>Books</h2>
+            <form action="dropBook" method="post" id="myform" align="center">
+                <p> 
+                    <label>Drop Book:
+                        <input type="text" id="bookID" name="bookID" size="30"/>
+                    </label>
+                </p>
+                <p> 
+                    <input type="submit" name="dropBook" value="Drop" id="drop" />
+                </p>
+            </form>
             <table class="table table-striped">
                 <thead>
                     <tr>

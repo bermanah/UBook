@@ -35,12 +35,9 @@ public class SearchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        //get an array list of the books with corresponding isbn 
-        //ArrayList<Book> list =  database.Database.searchBooks((String) request.getParameter("isbn"));
         String isbn = request.getParameter("isbn");
         
         //set this to a session attribute
-        //session.setAttribute("searchResults", list);
         session.setAttribute("isbn", isbn);
 
         //forward request

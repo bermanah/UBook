@@ -50,6 +50,17 @@
         <br>
         <div class="container">
             <h2>Users</h2>
+            <form action="dropUser" method="post" id="myform" align="center">
+                <p> 
+                    <label>Drop User:
+                        <input type="text" id="user" name="userid" size="30"/>
+                    </label>
+                </p>
+
+                <p> 
+                    <input type="submit" name="dropUser" value="Drop" id="drop" />
+                </p>
+            </form>
             <table class="table table-striped">
                 <thead>
                     <tr>

@@ -83,9 +83,9 @@
                                     out.println("</td>");
                                     out.println("<td style=\"width:40%\"> Description: " + book.getBookDescription() + "</td>");
                                     out.println("<td>");
-                                    out.println("<a href class=\"links\"=\"index.jsp\">More Information</a>");
-                                    out.println("<br/>");
-                                    //out.println("<a href class=\"links\"=\"index.jsp\">Save Book</a>");
+                                    out.print("<form class=\"form \"action=\"info\" method=\"post\" name=\"save\">"
+                                            + "<input type=\"hidden\" name=\"info\" value=" + book.getUserName() + "></input>"
+                                            + "<button type = \"submit\" class=\"btn btn-default\">More Information</button></form>");                                    out.println("<br/>");
                                     out.print("<form class=\"form \"action=\"delete\" method=\"post\" name=\"delete\">"
                                             + "<input type=\"hidden\" name=\"book\" value=" + book.getBookID() + "></input>"
                                             + "<button type = \"submit\" class=\"btn btn-default\">Delete from Saved</button></form>");
