@@ -28,8 +28,6 @@
             div a:hover:not(.active) {
                 background-color: #ddd;
             }
-            
-            
         </style>
     </head>
     <body>
@@ -57,9 +55,10 @@
                 out.print("<a class=\"navbar-brand\" href=\"index.jsp\">UBook</a>");
                 out.print("</div>");
                 out.print("<ul class=\"nav navbar-nav navbar-right\">");
-                out.print("<li><a href=\"profile.jsp\"><span class=\"glyphicon glyphicon-user\"></span> Profile</a></li>");
+                out.print("<li><a href=\"profile.jsp\" role=\"button\" class=\"btn btn-large\"><span class=\"glyphicon glyphicon-user\"></span> Profile</a></li>");
                 out.print("<li><form class=\"navbar-form navbar-right\"action=\"logout\" method=\"post\" name=\"Logout\">"
-                        + "<button type = \"submit\" class=\"glyphicon glyphicon-log-out btn btn-default\">Logout</button></form></li>");
+                        + "<a href=\"javascript:document.forms[\'Logout\'].submit()\" role=\"button\" class=\"btn btn-large\"><span class=\"glyphicon glyphicon-log-out\"></span> Logout</a></form></li>");
+                        //+ "<button type =\"submit\" role=\"button\" class=\"btn btn-large link\"><span class=\"glyphicon glyphicon-log-out\"></span> Logout</button></form></li>");
                 out.print("</ul>");
                 out.print("</div>");
                 out.print("</nav>");
